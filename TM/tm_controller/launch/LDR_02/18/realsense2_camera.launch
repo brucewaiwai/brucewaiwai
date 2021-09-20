@@ -1,0 +1,33 @@
+<launch>
+
+    <!-- <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+        <arg name="serial_no" value="948122072855"/>
+        <arg name="camera" value="cam_FF"/>
+        <arg name="filters" value="pointcloud"/>
+    </include>
+
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+        <arg name="serial_no" value="947522071305"/>
+        <arg name="camera" value="cam_BB"/>
+        <arg name="filters" value="pointcloud"/>
+    </include> -->
+
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+      <arg name="serial_no" value="038122250453"/>
+      <arg name="camera" value="cam_R"/>
+    </include>
+
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+      <arg name="serial_no" value="037522250252"/>
+      <arg name="camera" value="cam_L"/>
+      <arg name="filters" value="pointcloud"/>
+    </include>
+    
+ <param name="/cam_L/stereo_module/auto_exposure_limit" type="double" value="30000.0" />
+ <param name="/cam_L/stereo_module/auto_gain_limit" type="double" value="100.0" />
+ <param name="/cam_R/stereo_module/auto_exposure_limit" type="double" value="30000.0" />
+ <param name="/cam_R/stereo_module/auto_gain_limit" type="double" value="100.0" />
+
+
+</launch>
+

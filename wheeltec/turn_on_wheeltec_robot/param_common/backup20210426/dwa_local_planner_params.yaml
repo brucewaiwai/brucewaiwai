@@ -1,0 +1,71 @@
+DWAPlannerROS:
+
+# Robot Configuration Parameters
+  max_vel_x: 0.5
+  min_vel_x: 0.0
+
+  max_vel_y: 0.0
+  min_vel_y: 0.0
+
+# The velocity when robot is moving in a straight line
+  max_vel_trans:  0.6
+  min_vel_trans:  0.1
+
+
+  max_vel_theta: 1.0
+  min_vel_theta: 0.0
+
+  acc_lim_x: 0.5
+  acc_lim_y: 0.0
+  acc_lim_theta: 1 
+
+# Goal Tolerance Parametes
+  xy_goal_tolerance: 0.2
+  yaw_goal_tolerance: 0.1
+  latch_xy_goal_tolerance: false
+
+# Forward Simulation Parameters
+  sim_time: 2
+  vx_samples: 20
+  vy_samples: 0
+  vtheta_samples: 40
+  sim_granularity: 0.025
+  controller_frequency: 20.0
+
+# Trajectory Scoring Parameters
+  path_distance_bias: 32.0 #default 32
+  goal_distance_bias: 20.0
+  occdist_scale: 3
+  forward_point_distance: 0.325
+  stop_time_buffer: 0.2
+  scaling_speed: 0.25
+  max_scaling_factor: 0.3
+
+# Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.06       # 0.05   - how far to travel before resetting oscillation flags
+  oscillation_reset_angle: 0.5       #        - The angle the robot must turn before oscillation flags are reset, in radians
+
+  prune_plan: true                   #       - Defines whether or not to eat up the plan as the robot moves along the path. If set to true, points will fall off the end of the plan once the robot moves 1 meter past them.
+  use_dwa: true                      #       - Use dynamic window approach to constrain sampling velocities to small window.
+  
+  enable_rotate_to_goal_first: true
+  rotate_first_forward_offset: 0.1
+  rotate_first_goal_distance_threshold: 1.0
+  rotate_first_exit_cnt: 200
+
+  enable_global_plan_check: false
+  global_plan_check_distance: 0.8
+
+  goal_stop_on_failure_distance: 3.0
+
+  neglectful_rot_velocity: 0.1 # if ((linear.x < 0.02) && (angular.z < neglectful_rot_velocity)), return false, make local planner fail to make a plan.
+
+
+# Global Plan Parameters
+  prune_plan: true
+
+# Debugging
+  publish_traj_pc : true
+  publish_cost_grid_pc: true
+
+

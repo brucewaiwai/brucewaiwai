@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=TM
+Version=v0.8.5
+Icon=/home/tmrobot/catkin_ws/src/TM/start_robot/PST/TM.png
+Exec=python /home/tmrobot/catkin_ws/src/TM/start_robot/PST/PST.py
+Terminal=false
+Type=Application

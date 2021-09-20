@@ -1,0 +1,8 @@
+float32 voltage
+float32 current
+float32 remain_capacity
+float32 rated_capacity
+float32 battery_level
+bool is_charging
+float32 temperature1
+float32 temperature2

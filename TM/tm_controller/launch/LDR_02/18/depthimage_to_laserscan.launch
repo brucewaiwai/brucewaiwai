@@ -1,0 +1,47 @@
+<launch>
+
+
+
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+
+
+        <remap from="/image" to="/cam_L/depth/image_rect_raw"/>
+        <remap from="/camera_info" to="/cam_L/depth/camera_info"/>
+        <remap from="/scan" to="/cam_L/scan"/>
+
+        <param name="scan_height"  value="50"/>
+        <param name="range_min"  value="0.1"/>
+        <param name="range_max"  value="5"/>
+        <param name="output_frame_id"  value="/cam_L_link"/>
+        
+    </node>
+
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_L">
+        <remap from="cloud_in" to="/cam_L/depth/color/points"/>
+        <remap from="scan" to="/cam_L/point_scan"/>
+        <rosparam>
+            target_frame: cam_L_link # Leave disabled to output scan in pointcloud frame
+            transform_tolerance: 0.01
+            min_height: 0
+            max_height: 1.5
+
+            angle_min: -0.5 # -M_PI/2
+            angle_max: 0.5 # M_PI/2
+            angle_increment: 0.006 # M_PI/360.0
+            scan_time: 0.3333
+            range_min: 0.1
+            range_max: 10
+            use_inf: true
+            inf_epsilon: 1.0
+
+            # Concurrency level, affects number of pointclouds queued for processing, thread number governed by nodelet manager
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            concurrency_level: 1
+        </rosparam>
+
+    </node>
+
+</launch>
+

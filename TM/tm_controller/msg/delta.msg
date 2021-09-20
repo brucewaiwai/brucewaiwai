@@ -1,0 +1,16 @@
+float32 cut_off_voltage
+float32 demand_current
+float32 total_current
+bool wireless_status1
+bool wireless_status2
+bool fault_status1
+bool fault_status2
+bool power_status1
+bool power_status2
+float32 battery_voltage1
+float32 battery_voltage2
+float32 charging_current1
+float32 charging_current2
+float32 battery_tem
+float32 charger_tem1
+float32 charger_tem2

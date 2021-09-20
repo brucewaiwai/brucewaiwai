@@ -1,0 +1,21 @@
+<launch>
+  <node name="rplidarNode_F"          pkg="rplidar_ros"  type="rplidarNode" output="screen" respawn="true" >
+    <param name="channel_type"        type="string" value="tcp"/>  
+    <param name="tcp_ip"              type="string" value="192.168.200.11"/>  
+    <param name="tcp_port"            type="int"    value="20108"/>
+    <param name="frame_id"            type="string" value="laser_FF"/>
+    <param name="inverted"            type="bool"   value="false"/>
+    <param name="angle_compensate"    type="bool"   value="true"/>
+    <remap from="/scan" to="/scan_FF"/>
+  </node>
+
+  <node name="rplidarNode_B"          pkg="rplidar_ros"  type="rplidarNode" output="screen" respawn="true" >
+    <param name="channel_type"        type="string" value="tcp"/>  
+    <param name="tcp_ip"              type="string" value="192.168.200.10"/>  
+    <param name="tcp_port"            type="int"    value="20108"/>
+    <param name="frame_id"            type="string" value="laser_BB"/>
+    <param name="inverted"            type="bool"   value="false"/>
+    <param name="angle_compensate"    type="bool"   value="true"/>
+    <remap from="/scan" to="/scan_BB"/>
+  </node>
+</launch>

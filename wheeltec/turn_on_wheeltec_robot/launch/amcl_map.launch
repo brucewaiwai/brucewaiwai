@@ -1,0 +1,36 @@
+
+<launch>
+ <!-- 开启机器人底层相关节点  -->
+ <!-- <include file="$(find turn_on_wheeltec_robot)/launch/turn_on_wheeltec_robot.launch" /> -->
+ <!-- 设置需要用于导航的地图  -->
+ <arg name="nav_map_file" default="/home/tmrobot/Desktop/map/nav.yaml"/>
+ <arg name="loc_map_file" default="/home/tmrobot/Desktop/map/loc.yaml"/>
+
+ <!-- <arg name="map_file" default="/home/tmrobot/catkin_ws/src/TM/deploy/map/map.yaml"/>
+ <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" respawn="true" >
+ </node> -->
+ <node name="nav_map" pkg="map_server" type="map_server" args="$(arg nav_map_file)" respawn="true">
+     <remap from="/map" to="/nav_map"/>
+     <remap from="/map_metadata" to="/nav_map_metadata"/>
+ </node>
+
+ <node name="loc_map" pkg="map_server" type="map_server" args="$(arg loc_map_file)" respawn="true">
+     <remap from="/map" to="/loc_map"/>
+     <remap from="/map_metadata" to="/loc_map_metadata"/>
+ </node>
+
+
+   <!-- 开启用于导航的自适应蒙特卡洛定位amcl_omni  运动方式是omni不是diff-->
+   <include file="$(find turn_on_wheeltec_robot)/launch/include/amcl_omni.launch" />
+  <!-- 开启tel_local_planner导航算法-一般用于全向移动阿克曼等车-->
+   <!-- <include file="$(find turn_on_wheeltec_robot)/launch/include/tel_local_planner.launch" /> -->
+
+
+ <!-- 开启用于导航的自适应蒙特卡洛定位amcl 运动方式是diff -->
+   <!--include file="$(find turn_on_wheeltec_robot)/launch/include/amcl.launch" /-->
+  <!-- 开启dwa_local_planner导航算法 一般用于差速车-->
+   <!-- <include file="$(find turn_on_wheeltec_robot)/launch/include/dwa_local_planner.launch" /> -->
+
+  <!-- <node name='send_mark' pkg="turn_on_wheeltec_robot" type="send_mark.py"> -->
+  <!-- </node > -->
+</launch>

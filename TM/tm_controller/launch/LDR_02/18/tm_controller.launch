@@ -1,0 +1,10 @@
+<launch>
+  <node pkg="tm_controller" type="tm_server_cmd.py" name="tm_controller" respawn="true" output="screen"/>
+  <node pkg="tm_controller" type="led_speaker_control.py" name="led_speaker" respawn="true" output="screen"/>
+  <node pkg="tm_controller" type="dynamic_footprint.py" name="dynamic_footprint" respawn="true" output="screen"/>
+  <node pkg="tm_controller" type="footprint_protection.py" name="footprint_protection" respawn="true" output="screen"/>
+  <node pkg="tm_controller" type="battery.py" name="battery" respawn="true" output="screen">
+    <param name="record_rate" value="1" type="double"/>
+  </node>
+  <!-- <node pkg="tm_controller" type="imu_converter.py" name="imu_converter" respawn="true" output="screen"/> -->
+</launch>

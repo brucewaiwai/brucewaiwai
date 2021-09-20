@@ -1,0 +1,111 @@
+<launch>
+
+    <arg name="range_max" default="25"/>
+    <arg name="range_min" default="0.05"/>
+    <arg name="max_ang" default="1.57"/>
+    <arg name="min_ang" default="-1.57"/>
+
+
+    <node name="sick_tim_5xx_F" pkg="sick_scan" type="sick_generic_caller" respawn="true" >
+        <!--<param name="robot_description" command="$(find xacro)/xacro.py '$(find sick_scan)/urdf/example.urdf.xacro'" />-->
+        <param name="scanner_type" type="string" value="sick_tim_5xx"/>
+
+        <param name="min_ang" type="double" value="-1"/>
+        <param name="max_ang" type="double" value="0.75"/>
+        <param name="range_min" type="double" value="$(arg range_min)"/>
+        <param name="range_max" type="double" value="25"/>
+
+        <param name="use_binary_protocol" type="bool" value="true"/>
+        <param name="intensity" type="bool" value="True"/>
+        <param name="hostname" type="string" value="192.168.200.7"/>
+        <param name="cloud_topic" type="string" value="cloud1"/>
+        <param name="frame_id" type="str" value="laser_F"/>
+        <param name="port" type="string" value="2112"/>
+        <param name="timelimit" type="int" value="5"/>
+        <param name="sw_pll_only_publish" type="bool" value="False"/>
+        <remap from="/scan" to="/scan_F"/>
+        <remap from="/imu" to="/scan_imu"/>
+    </node>
+
+    <node name="sick_tim_5xx_B" pkg="sick_scan" type="sick_generic_caller" respawn="true" >
+        <!--<param name="robot_description" command="$(find xacro)/xacro.py '$(find sick_scan)/urdf/example.urdf.xacro'" />-->
+        <param name="scanner_type" type="string" value="sick_tim_5xx"/>
+
+        <param name="min_ang" type="double" value="-0.75"/>
+        <param name="max_ang" type="double" value="1"/>
+        <param name="range_min" type="double" value="$(arg range_min)"/>
+        <param name="range_max" type="double" value="25"/>
+
+        <param name="use_binary_protocol" type="bool" value="true"/>
+        <param name="intensity" type="bool" value="True"/>
+        <param name="hostname" type="string" value="192.168.200.8"/>
+        <param name="cloud_topic" type="string" value="cloud2"/>
+        <param name="frame_id" type="str" value="laser_B"/>
+        <param name="port" type="string" value="2112"/>
+        <param name="timelimit" type="int" value="5"/>
+        <param name="sw_pll_only_publish" type="bool" value="False"/>
+        <remap from="/scan" to="/scan_B"/>
+        <remap from="/imu" to="/scan_imu"/>
+    </node>
+
+    <node name="sick_tim_5xx_L" pkg="sick_scan" type="sick_generic_caller" respawn="true" >
+
+        <param name="scanner_type" type="string" value="sick_tim_5xx"/>
+
+        <param name="min_ang" type="double" value="-0.9"/>
+        <param name="max_ang" type="double" value="0.9"/>
+        <param name="range_min" type="double" value="$(arg range_min)"/>
+        <param name="range_max" type="double" value="$(arg range_max)"/>
+
+        <param name="use_binary_protocol" type="bool" value="true"/>
+        <param name="intensity" type="bool" value="True"/>
+        <param name="hostname" type="string" value="192.168.200.9"/>
+        <param name="cloud_topic" type="string" value="cloud3"/>
+        <param name="frame_id" type="str" value="laser_L"/>
+        <param name="port" type="string" value="2112"/>
+        <param name="timelimit" type="int" value="5"/>
+        <param name="sw_pll_only_publish" type="bool" value="False"/>
+        <remap from="/scan" to="/scan_L"/>
+        <remap from="/imu" to="/scan_imu"/>
+    </node> 
+
+    <node name="sick_tim_5xx_R" pkg="sick_scan" type="sick_generic_caller" respawn="true" >
+
+        <param name="scanner_type" type="string" value="sick_tim_5xx"/>
+
+        <param name="min_ang" type="double" value="-1"/>
+        <param name="max_ang" type="double" value="1.1"/>
+        <param name="range_min" type="double" value="$(arg range_min)"/>
+        <param name="range_max" type="double" value="$(arg range_max)"/>
+        
+        <param name="use_binary_protocol" type="bool" value="true"/>
+        <param name="intensity" type="bool" value="True"/>
+        <param name="hostname" type="string" value="192.168.200.6"/>
+        <param name="cloud_topic" type="string" value="cloud4"/>
+        <param name="frame_id" type="str" value="laser_R"/>
+        <param name="port" type="string" value="2112"/>
+        <param name="timelimit" type="int" value="5"/>
+        <param name="sw_pll_only_publish" type="bool" value="False"/>
+        <remap from="/scan" to="/scan_R"/>
+        <remap from="/imu" to="/scan_imu"/>
+    </node> 
+
+
+
+
+    <!-- <include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch" /> -->
+    <!-- <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+        <param name="destination_frame" value="laser"/>
+        <param name="cloud_destination_topic" value="/merged_cloud"/>
+        <param name="scan_destination_topic" value="/scan"/>
+        <param name="laserscan_topics" value ="/scan1 /scan2" /> 
+
+        <param name="angle_min" value="-3.14"/>
+        <param name="angle_max" value="3.14"/>
+        <param name="angle_increment" value="0.0058"/>
+        <param name="scan_time" value="0.0333333"/>
+        <param name="range_min" value="0.30"/>
+        <param name="range_max" value="50.0"/>
+    </node> -->
+
+</launch>

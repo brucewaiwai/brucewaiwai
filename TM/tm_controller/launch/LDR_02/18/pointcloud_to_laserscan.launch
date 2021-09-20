@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+
+<launch>
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+        <!--arg name="serial_no" value="948122072855"/-->
+        <arg name="serial_no" value="036422070888"/>
+        <arg name="camera" value="cam_BB"/>
+        <arg name="filters" value="pointcloud"/>
+    </include>
+
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+        <arg name="serial_no" value="947522071305"/>
+        <arg name="camera" value="cam_FF"/>
+        <arg name="filters" value="pointcloud"/>
+    </include>
+    
+    <!-- push pointcloud_to_laserscan nodelet into sensor's nodelet manager-->
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_FF">
+        <remap from="cloud_in" to="/cam_FF/depth/color/points"/>
+        <remap from="scan" to="/cam_FF/scan"/>
+        <rosparam>
+            target_frame: laser # Leave disabled to output scan in pointcloud frame
+            transform_tolerance: 0.01
+            min_height: -0.1
+            max_height: 0.3
+
+            angle_min: -1 # -M_PI/2
+            angle_max: 1 # M_PI/2
+            angle_increment: 0.006 # M_PI/360.0
+            scan_time: 0.3333
+            range_min: 0.1
+            range_max: 10
+            use_inf: true
+            inf_epsilon: 1.0
+
+            # Concurrency level, affects number of pointclouds queued for processing, thread number governed by nodelet manager
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            concurrency_level: 1
+        </rosparam>
+
+    </node>
+
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_BB">
+        <remap from="cloud_in" to="/cam_BB/depth/color/points"/>
+        <remap from="scan" to="/cam_BB/scan"/>
+        <rosparam>
+            target_frame: laser # Leave disabled to output scan in pointcloud frame
+            transform_tolerance: 0.01
+            min_height: -0.1
+            max_height: 0.3
+
+            angle_min: -3.14 # -M_PI/2
+            angle_max: 3.14 # M_PI/2
+            angle_increment: 0.006 # M_PI/360.0
+            scan_time: 0.3333
+            range_min: 0.1
+            range_max: 10
+            use_inf: true
+            inf_epsilon: 1.0
+
+            # Concurrency level, affects number of pointclouds queued for processing, thread number governed by nodelet manager
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            concurrency_level: 1
+        </rosparam>
+
+    </node>
+
+</launch>

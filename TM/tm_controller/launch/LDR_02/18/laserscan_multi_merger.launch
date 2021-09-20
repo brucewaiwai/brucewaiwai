@@ -1,0 +1,24 @@
+<!--
+DESCRITPION
+-->
+
+
+<launch>
+        <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+        	<param name="destination_frame" value="laser"/>
+		<param name="cloud_destination_topic" value="/sick_s1_cloud_merged"/>
+		<param name="scan_destination_topic" value="/sick_s1_scan_merged"/>
+                <param name="laserscan_topics" value ="/sick_scan_F /sick_scan_B /sick_scan_L /sick_scan_R /s1_scan_F /s1_scan_B"  /> 
+                <!-- <param name="laserscan_topics" value ="/sick_scan_F /sick_scan_B /sick_scan_L /sick_scan_R"  /> -->
+
+                <param name="angle_min" value="-3.14"/>
+                <param name="angle_max" value="3.14"/>
+                <param name="angle_increment" value="0.0058"/>
+                <param name="time_increment" value="6.17283949396e-05"/>
+                
+                <param name="scan_time" value="0.0666666"/>
+                <param name="range_min" value="0.05"/>
+                <param name="range_max" value="40.0"/>
+
+	</node>
+</launch>

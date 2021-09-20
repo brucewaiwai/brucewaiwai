@@ -1,0 +1,38 @@
+scan_filter_chain:
+
+- name: polygon_filter
+  type: laser_filters/LaserScanPolygonFilter
+  params:
+    polygon_frame: base_footprint
+    # polygon: [[0.0, 0.0], [0.1, 0.1], [0.1, 0.0], [0.0, -0.1]]
+    polygon: [[-0.75, -0.45], [-0.75, 0.35],[0.75,0.35],[0.75, -0.45]]
+    invert: false
+
+
+- name: speckle_filter
+  type: laser_filters/LaserScanSpeckleFilter
+  params:
+    # Select which filter type to use.
+    # 0: Range based filtering (distance between consecutive points)
+    # 1: Euclidean filtering based on radius outlier search
+    filter_type: 0
+
+    # Only ranges smaller than this range are taken into account
+    max_range: 5
+
+    # filter_type[0] (Distance): max distance between consecutive points
+    # filter_type[1] (RadiusOutlier): max distance between points
+    max_range_difference: 0.1
+
+    # filter_type[0] (Distance): Number of consecutive ranges that will be tested for max_distance
+    # filter_type[1] (RadiusOutlier): Minimum number of neighbors
+    filter_window: 3
+
+# - name: box_filter
+#   type: laser_filters/LaserScanRangeFilter
+#   params:
+#     use_message_range_limits: true   # if not specified defaults to false
+#     lower_threshold: 0              # if not specified defaults to 0.0
+#     upper_threshold: 40            # if not specified defaults to 100000.0
+#     lower_replacement_value: NaN    # if not specified defaults to NaN
+#     upper_replacement_value: 40     # if not specified defaults to NaN

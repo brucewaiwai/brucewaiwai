@@ -1,0 +1,60 @@
+<launch>
+  <!-- Arguments参数 -->
+
+    <node pkg="tf" type="static_transform_publisher" name="base_to_link"   args="0 0 0 0 0 0 base_footprint base_link 100" />
+    <node pkg="tf" type="static_transform_publisher" name="base_to_gyro"   args="0 0 0 0 0 0  base_footprint gyro_link 100" />
+    <node pkg="tf" type="static_transform_publisher" name="base_to_laser" args="0.0 0.0 0.5 0 0 0  base_footprint laser 100" />
+
+    <node pkg="tf" type="static_transform_publisher" name="base_to_laser1" args="0.27 0.0 0.5 3.14159 3.14159 0  base_footprint laser_F 100" />
+    <node pkg="tf" type="static_transform_publisher" name="base_to_laser2" args="-0.27 0.0 0.5 -0.0 3.14159 0  base_footprint laser_B 100" />
+    <node pkg="tf" type="static_transform_publisher" name="base_to_laser3" args="0.0 0.285 0.5 -1.57079 3.14159 0  base_footprint laser_L 100" />
+    <node pkg="tf" type="static_transform_publisher" name="base_to_laser4" args="-0.0 -0.41 0.5 1.57079 3.14159 0  base_footprint laser_R 100" />
+    <node pkg="tf" type="static_transform_publisher" name="base_to_laser5" args="0.65 -0.41 0.5 0.01 3.14159 0  base_footprint laser_FF 100" />
+    <node pkg="tf" type="static_transform_publisher" name="base_to_laser6" args="-0.65 -0.41 0.5 -3.12 3.14159 0  base_footprint laser_BB 100" />
+
+    <node pkg="tf" type="static_transform_publisher" name="base_to_camera_R" args="0.0 -0.4 0.5 -1.57 0 3.14   base_footprint cam_R_link 100" />
+    <node pkg="tf" type="static_transform_publisher" name="base_to_camera_F" args="0.65 -0.41 0.5 0 0 1.57   base_footprint cam_F_link 100" />
+
+    <node pkg="tf" type="static_transform_publisher" name="base_to_camera_B" args="-0.65 -0.41 0.5 3.14 0 -1.57   base_footprint cam_B_link 100" />
+    
+    <node pkg="tf" type="static_transform_publisher" name="base_to_camera_FF" args="0.27 -0.4 0.5 0 0 3.14   base_footprint cam_FF_link 100" />
+    <node pkg="tf" type="static_transform_publisher" name="base_to_camera_BB" args="-0.27 -0.4 0.5 3.14 0 0   base_footprint cam_BB_link 100" />
+
+    <node pkg="tf" type="static_transform_publisher" name="base_to_camera_L" args="0.0 -0.3 0.5 1.57 0 0   base_footprint cam_L_link 100" />    
+    <node pkg="tf" type="static_transform_publisher" name="base_to_camera_LL" args="0.0 0.33 0.1 1.57 0 3.14   base_footprint cam_LL_link 100" />
+    <node pkg="tf" type="static_transform_publisher" name="base_to_sonar" args="0.5 -0.33 0.5 1.57 0 0   base_footprint sonar 100" />
+    
+
+
+
+   <!-- turn on lidar开启思岚雷达  -->
+   <!-- <include file="$(find rplidar_ros)/launch/rplidar_a3.launch" /> -->
+      <!-- turn on base_serial 开启底层单片机的控制节点  -->
+    <include file="$(find turn_on_wheeltec_robot)/launch/include/base_serial.launch" />
+    <include file="$(find fdilink_ahrs)/launch/ahrs_driver.launch" />
+    <!-- <include file="$(find sensor_imu)/launch/sensor_imu.launch" /> -->
+
+    <!-- <include file="$(find laser_filters)/examples/tm_laser_filter.launch" /> -->
+
+    <!-- <include file="$(find ira_laser_tools)/launch/sick_merger.launch" /> 
+    <include file="$(find ira_laser_tools)/launch/sick_s1_merger.launch" />  -->
+
+
+
+    <!-- <include file="$(find imu_complementary_filter)/launch/complementary_filter.launch" /> -->
+
+    <!-- turn on ekf 扩张卡尔曼滤波 -->
+    <!-- <include file="$(find turn_on_wheeltec_robot)/launch/include/robot_pose_ekf.launch" /> -->
+    
+    <!-- URDF 标准化机器人描述格式 -->
+
+    <!-- <param name = "robot_description" textfile = "$(find wheeltec_robot_urdf)/urdf/wheeltec_robot.urdf"/> 
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
+    <!-- 机器人控制平滑包，该官方包不支持全向机器人 -->
+    <!--include file="$(find turn_on_wheeltec_robot)/launch/include/velocity_smoother.launch" /-->
+
+</launch>
+
+

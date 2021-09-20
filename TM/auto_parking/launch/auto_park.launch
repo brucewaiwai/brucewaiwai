@@ -1,0 +1,12 @@
+<launch>
+
+
+
+    <include file="$(find ar_track_alvar)/launch/pr2_indiv_no_kinect.launch" />
+    
+    <node pkg="auto_parking" type="auto_parking.py" name="auto_parking" output="screen"> 
+    </node>
+
+</launch>
+
+

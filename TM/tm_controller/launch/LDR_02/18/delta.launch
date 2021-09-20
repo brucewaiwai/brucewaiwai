@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="tm_controller" type="delta.py" name="delta" respawn="true" output="screen">
+    <param name="cut_off_voltage" value="29" type="double"/>
+    <param name="charging_current" value="30" type="double"/>
+    <param name="charging_mode" value="1" /> <!-- 0 = single charger, 1 = double charger -->
+    <param name="port" value="/dev/TMdelta"/>
+  </node>
+
+</launch>

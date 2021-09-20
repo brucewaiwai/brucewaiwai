@@ -1,0 +1,23 @@
+<launch>
+
+
+
+ <!-- joy node -->
+  
+  <node pkg="joy" type="joy_node" name="joy_node" required="true">
+    <param name="autorepeat_rate" value="5" type="double"/>
+  </node>
+
+  <node pkg="joy" type="joy_node" name="joy_node_cheat" required="true">
+    <param name="autorepeat_rate" value="5" type="double"/>
+    <param name="dev" value="/dev/input/js1"/>
+    <remap from="/joy" to="/joy_cheat"/>
+  </node>
+
+
+  <node pkg="joystick_control" type="jsc.py" name="Joy2wheeltec" output="screen">
+    <param name="linear_speed" value="0.1" type="double"/>
+    <param name="angular_speed" value="0.1" type="double"/>
+  </node>
+
+</launch>

@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="rosserial_arduino" type="serial_node.py" name="arduino" respawn="true" output="screen">
+    <param name="port"    type="string" value="/dev/TMarduino_mega"/>
+  </node>
+</launch>

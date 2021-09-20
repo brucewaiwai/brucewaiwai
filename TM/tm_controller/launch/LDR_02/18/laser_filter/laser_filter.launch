@@ -1,0 +1,50 @@
+<launch>
+      <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter_sick_F">
+            <remap from="scan" to="/scan_F" />
+            <remap from="/scan_filtered" to="/sick_scan_F" />
+            <rosparam command="load" file="$(find tm_controller)/launch/LDR_02/laser_filter/laser_filter_sick.yaml" />
+      </node>
+
+      <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter_sick_B">
+            <remap from="scan" to="/scan_B" />
+            <remap from="/scan_filtered" to="/sick_scan_B" />
+            <rosparam command="load" file="$(find tm_controller)/launch/LDR_02/laser_filter/laser_filter_sick.yaml" />
+      </node>
+
+      <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter_sick_L">
+            <remap from="scan" to="/scan_L" />
+            <remap from="/scan_filtered" to="/sick_scan_L" />
+            <rosparam command="load" file="$(find tm_controller)/launch/LDR_02/laser_filter/laser_filter_sick.yaml" />
+      </node>
+
+      <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter_sick_R">
+            <remap from="scan" to="/scan_R" />
+            <remap from="/scan_filtered" to="/sick_scan_R" />
+            <rosparam command="load" file="$(find tm_controller)/launch/LDR_02/laser_filter/laser_filter_sick.yaml" />
+      </node>
+
+      <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter_s1_F">
+            <remap from="/scan" to="/scan_FF" />
+            <remap from="/scan_filtered" to="/s1_scan_F" />
+            <rosparam command="load" file="$(find tm_controller)/launch/LDR_02/laser_filter/laser_filter_s1.yaml" />
+      </node>
+
+      <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter_s1_B">
+            <remap from="/scan" to="/scan_BB" />
+            <remap from="/scan_filtered" to="/s1_scan_B" />
+            <rosparam command="load" file="$(find tm_controller)/launch/LDR_02/laser_filter/laser_filter_s1.yaml" />
+      </node>
+
+      <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter_cam_FF">
+            <remap from="/scan" to="/cam_FF/scan" />
+            <remap from="/scan_filtered" to="/cam_FF/scan_filtered" />
+            <rosparam command="load" file="$(find tm_controller)/launch/LDR_02/laser_filter/laser_filter_cam.yaml" />
+      </node>
+
+      <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter_cam_BB">
+            <remap from="/scan" to="/cam_BB/scan" />
+            <remap from="/scan_filtered" to="/cam_BB/scan_filtered" />
+            <rosparam command="load" file="$(find tm_controller)/launch/LDR_02/laser_filter/laser_filter_cam.yaml" />
+      </node>
+
+</launch>
